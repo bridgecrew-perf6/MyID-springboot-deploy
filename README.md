@@ -28,7 +28,14 @@ Docker & Docker Compose environment
 $ docker-compose up -d
 ```
 
+### Restart container
+when changed source file
+```
+$ docker-compose down && docker-compose up -d
+```
+
 ### Rebuild Image
+when changed configure file
 ```
 $ docker-compose build
 ```
