@@ -1,9 +1,9 @@
-/app/logs/catalina.out {
+{{ .Env.SERVER_TOMCAT_LOG }} {{ .Env.SERVER_TOMCAT_ACCESS_DIRECTORY }}/gc-*.current {
     daily
     rotate {{ .Env.SPRING_LOGROTATE_DATE }}
     copytruncate
     missingok
     notifempty
-    dateformat .%Y-%m-%d.txt
+    dateformat .%Y-%m-%d
     dateext
 }

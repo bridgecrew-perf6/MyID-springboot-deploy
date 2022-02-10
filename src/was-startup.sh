@@ -1,6 +1,6 @@
 #!/bin/bash
 
-gomplate -f /tmp/logrotate-was.tmpl -o /etc/logrotate.d/logrotate-was
+gomplate -f logrotate-was.tmpl -o /etc/logrotate.d/logrotate-was
 echo -e "0\t0\t*\t*\t*\tlogrotate -f /etc/logrotate.d/logrotate-was" > /etc/crontabs/root
 
 export SPRING_GC=${SPRING_GC:-"-XX:${JAVA_GC_TYPE} -XX:NewRatio=${JAVA_GC_NEWRATIO} ${JAVA_GC_EXTRA} \
@@ -19,6 +19,7 @@ java ${SPRING_GC} \
      ${SPRING_SERVER_TOMCAT_ENV} -Dserver.tomcat.accesslog.pattern="${SERVER_TOMCAT_ACCESSLOG_PATTERN}" \
      -jar -server -Xms${SPRING_XMS} -Xmx${SPRING_XMX} \
      -Dspring.profiles.active=${SPRING_PROFILE} \
-     -Djava.net.preferIPv4Stack=true -Dfile.encoding=utf8 ${SPRING_FILE_DIRECTORY}/${SPRING_FILE} ${JAVA_EXTRA_OPTION}  >> ${SERVER_TOMCAT_LOG}  2>&1
+     -Djava.net.preferIPv4Stack=true -Dfile.encoding=utf8 ${SPRING_FILE} ${JAVA_EXTRA_OPTION}  >> ${SERVER_TOMCAT_LOG}  2>&1
 
 exec crond -f -L /var/log/cron.log
+

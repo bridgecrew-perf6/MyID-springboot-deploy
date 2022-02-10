@@ -4,16 +4,16 @@ services:
         build: .
         container_name: springboot
         network_mode: host
-        #environment:
-            #SPRING_FILE: "ROOT.jar"
-            #SPRING_PROFILE: "live"
-            #SPRING_HEALTH_CHECK: "localhost:8080/healthCheck"
-            #SPRING_XMS: "1g"
-            #SPRING_XMX: "1g"
-            #JAVA_EXTRA_OPTION: ""
+        # environment:
+        #     SPRING_FILE: "ROOT.jar"
+        #     SPRING_PROFILE: "live"
+        #     SPRING_HEALTH_CHECK: "localhost:8080/healthCheck"
+        #     SPRING_XMS: "1g"
+        #     SPRING_XMX: "1g"
+        #     JAVA_EXTRA_OPTION: ""
         volumes:
+            - ./src:/app
             - ./logs:/app/logs
-            - ./src:/app/data
         ulimits:
             nofile:
                 soft: 65535
